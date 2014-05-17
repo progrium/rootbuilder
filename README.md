@@ -4,8 +4,9 @@ This is a Docker container base image for producing tiny BusyBox/buildroot files
 
 ## Using rootbuilder
 
-Make a directory in your project called `rootbuilder` that has a Dockerfile with just the contents `FROM progrium/rootbuilder`. Building this Dockerfile will produce a filesystem tar that you can access from the stdout of running the built contianer. You often use it like this:
+Make a directory in your project called `rootfs` that has a Dockerfile with just the contents `FROM progrium/rootbuilder`. Building this Dockerfile will produce a filesystem tar that you can access from the stdout of running the built contianer. You often use it like this:
 
+	$ cd rootfs
 	$ docker build -t rootfs-build .
 	$ docker run --rm rootfs-build > ../rootfs.tar
 	$ docker rmi rootfs-build
@@ -17,7 +18,7 @@ Now that you have a `rootfs.tar` in your project root, your actual project Docke
 
 ## Customizing rootbuilder
 
-You can change buildroot settings and modify the filesystem tar produced during the build process by including either a `pre-make` and/or a `post-make` script (with proper exec bits) in a `hooks` directory of your `rootbuilder` directory. These are added during the build process via ONBUILD ADD instructions in the base `progrium/rootbuilder` Dockerfile. It will also add any directories under `package` to the `package` directory of the buildroot, so you can configure packages.
+You can change buildroot settings and modify the filesystem tar produced during the build process by including either a `pre-make` and/or a `post-make` script (with proper exec bits) in a `hooks` directory of your `rootfs` directory. These are added during the build process via ONBUILD ADD instructions in the base `progrium/rootbuilder` Dockerfile. It will also add any directories under `package` to the `package` directory of the buildroot, so you can configure packages.
 
 A common use for `pre-make` is to add configuration to the buildroot config. A common use for `post-make` is to modify the resulting `rootfs.tar` file in the build environment.
 
