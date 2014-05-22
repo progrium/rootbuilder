@@ -1,8 +1,12 @@
+.PHONY: config
 
-build: rootfs.tar Dockerfile
-	docker build -t rootbuilder-example .
+config:
+	docker run -it rootbuilder make nconfig
+	docker cp `docker ps -lq`:/tmp/buildroot/.config .
+	docker rm `docker ps -lq`
+	mv .config config
 
-rootfs.tar:
-	cd rootfs && docker build -t rootbuilder .
-	docker run --rm rootbuilder > rootfs.tar
-	docker rmi rootbuilder
+build:
+	docker build -t rootfs .
+	docker run --rm rootfs cat /tmp/buildroot/output/images/rootfs.tar > rootfs.tar
+	docker rmi rootfs

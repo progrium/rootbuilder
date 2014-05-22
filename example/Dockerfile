@@ -1,3 +1,4 @@
-FROM scratch
-ADD rootfs.tar /
-CMD ["/bin/sh"]
+FROM rootbuilder
+ADD ./config /tmp/buildroot/.config
+RUN make oldconfig
+RUN make --quiet
