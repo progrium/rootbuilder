@@ -1,6 +1,6 @@
 # rootbuilder
 
-This is a Docker build environment container for buildroot. You can use this container to produce a root fielsystem tar that you can use for building BusyBox containers from scratch. See the example directory for how you'd normally use rootbuilder.
+This is a Docker build environment container for buildroot. You can use this container to produce a root filesystem tar that you can use for building BusyBox containers from scratch. See the example directory for how you'd normally use rootbuilder.
 
 ## Using rootbuilder
 
