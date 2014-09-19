@@ -16,4 +16,7 @@ RUN            DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get insta
 WORKDIR        /tmp
 RUN            wget -nv http://buildroot.uclibc.org/downloads/buildroot-$BR_VERSION.tar.gz
 RUN            tar -zxf buildroot-$BR_VERSION.tar.gz && mv buildroot-$BR_VERSION buildroot
+ADD            ./package/nginx /tmp/buildroot/package/nginx
+RUN            sed '/menu "Networking applications"/a\source \"package\/nginx\/Config.in"' buildroot/package/Config.in > tmpfile
+RUN            mv tmpfile buildroot/package/Config.in
 WORKDIR        /tmp/buildroot

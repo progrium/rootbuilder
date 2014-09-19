@@ -1,0 +1,313 @@
+comment "nginx needs a toolchain w/ largefile"
+	depends on !BR2_LARGEFILE
+
+menuconfig BR2_PACKAGE_NGINX
+	bool "nginx"
+	depends on BR2_LARGEFILE
+	help
+	  nginx is an HTTP and reverse proxy server, as well as a mail proxy
+	  server.
+
+	  http://nginx.org/
+
+if BR2_PACKAGE_NGINX
+
+config BR2_PACKAGE_NGINX_FILE_AIO
+	bool "file AIO support"
+
+config BR2_PACKAGE_NGINX_HTTP
+	bool "http server"
+	default y
+
+if BR2_PACKAGE_NGINX_HTTP
+
+config BR2_PACKAGE_NGINX_http_cache
+	bool "http cache support"
+	select BR2_PACKAGE_OPENSSL
+
+comment "http modules"
+
+config BR2_PACKAGE_NGINX_http_spdy_module
+	bool "ngx_http_spdy_module"
+	help
+	  Enable ngx_http_spdy_module
+
+config BR2_PACKAGE_NGINX_http_realip_module
+	bool "ngx_http_realip_module"
+	help
+	  Enable ngx_http_realip_module
+
+config BR2_PACKAGE_NGINX_http_addition_module
+	bool "ngx_http_addition_module"
+	help
+	  Enable ngx_http_addition_module
+
+config BR2_PACKAGE_NGINX_http_xslt_module
+	bool "ngx_http_xslt_module"
+	select BR2_PACKAGE_LIBXML2
+	select BR2_PACKAGE_LIBXSLT
+	help
+	  Enable ngx_http_xslt_module
+
+config BR2_PACKAGE_NGINX_http_image_filter_module
+	bool "ngx_http_image_filter_module"
+	select BR2_PACKAGE_GD
+	select BR2_PACKAGE_JPEG
+	select BR2_PACKAGE_LIBPNG
+	help
+	  Enable ngx_http_image_filter_module
+
+config BR2_PACKAGE_NGINX_http_sub_module
+	bool "ngx_http_sub_module"
+	help
+	  Enable ngx_http_sub_module
+
+config BR2_PACKAGE_NGINX_http_dav_module
+	bool "ngx_http_dav_module"
+	help
+	  Enable ngx_http_dav_module
+
+config BR2_PACKAGE_NGINX_http_flv_module
+	bool "ngx_http_flv_module"
+	help
+	  Enable ngx_http_flv_module
+
+config BR2_PACKAGE_NGINX_http_mp4_module
+	bool "ngx_http_mp4_module"
+	help
+	  Enable ngx_http_mp4_module
+
+config BR2_PACKAGE_NGINX_http_gunzip_module
+	bool "ngx_http_gunzip_module"
+	select BR2_PACKAGE_ZLIB
+	help
+	  Enable ngx_http_gunzip_module
+
+config BR2_PACKAGE_NGINX_http_gzip_static_module
+	bool "ngx_http_gzip_static_module"
+	select BR2_PACKAGE_ZLIB
+	help
+	  Enable ngx_http_gzip_static_module
+
+config BR2_PACKAGE_NGINX_http_auth_request_module
+	bool "ngx_http_auth_request_module"
+	help
+	  Enable ngx_http_auth_request_module
+
+config BR2_PACKAGE_NGINX_http_random_index_module
+	bool "ngx_http_random_index_module"
+	help
+	  Enable ngx_http_random_index_module
+
+config BR2_PACKAGE_NGINX_http_secure_link_module
+	bool "ngx_http_secure_link_module"
+	select BR2_PACKAGE_OPENSSL
+	help
+	  Enable ngx_http_secure_link_module
+
+config BR2_PACKAGE_NGINX_http_degradation_module
+	bool "ngx_http_degradation_module"
+	help
+	  Enable ngx_http_degradation_module
+
+config BR2_PACKAGE_NGINX_http_stub_status_module
+	bool "ngx_http_stub_status_module"
+	help
+	  Enable ngx_http_stub_status_module
+
+config BR2_PACKAGE_NGINX_http_charset_module
+	bool "ngx_http_charset_module"
+	default y
+	help
+	  Enable ngx_http_charset_module
+
+config BR2_PACKAGE_NGINX_http_gzip_module
+	bool "ngx_http_gzip_module"
+	select BR2_PACKAGE_ZLIB
+	default y
+	help
+	  Enable ngx_http_gzip_module
+
+config BR2_PACKAGE_NGINX_http_ssi_module
+	bool "ngx_http_ssi_module"
+	default y
+	help
+	  Enable ngx_http_ssi_module
+
+config BR2_PACKAGE_NGINX_http_userid_module
+	bool "ngx_http_userid_module"
+	default y
+	help
+	  Enable ngx_http_userid_module
+
+config BR2_PACKAGE_NGINX_http_access_module
+	bool "ngx_http_access_module"
+	default y
+	help
+	  Enable ngx_http_access_module
+
+config BR2_PACKAGE_NGINX_http_auth_basic_module
+	bool "ngx_http_auth_basic_module"
+	default y
+	help
+	  Enable ngx_http_auth_basic_module
+
+config BR2_PACKAGE_NGINX_http_autoindex_module
+	bool "ngx_http_autoindex_module"
+	default y
+	help
+	  Enable ngx_http_autoindex_module
+
+config BR2_PACKAGE_NGINX_http_geo_module
+	bool "ngx_http_geo_module"
+	default y
+	help
+	  Enable ngx_http_geo_module
+
+config BR2_PACKAGE_NGINX_http_map_module
+	bool "ngx_http_map_module"
+	default y
+	help
+	  Enable ngx_http_map_module
+
+config BR2_PACKAGE_NGINX_http_split_clients_module
+	bool "ngx_http_split_clients_module"
+	default y
+	help
+	  Enable ngx_http_split_clients_module
+
+config BR2_PACKAGE_NGINX_http_referer_module
+	bool "ngx_http_referer_module"
+	default y
+	help
+	  Enable ngx_http_referer_module
+
+config BR2_PACKAGE_NGINX_http_rewrite_module
+	bool "ngx_http_rewrite_module"
+	select BR2_PACKAGE_PCRE
+	default y
+	help
+	  Enable ngx_http_rewrite_module
+
+config BR2_PACKAGE_NGINX_http_proxy_module
+	bool "ngx_http_proxy_module"
+	default y
+	help
+	  Enable ngx_http_proxy_module
+
+config BR2_PACKAGE_NGINX_http_fastcgi_module
+	bool "ngx_http_fastcgi_module"
+	default y
+	help
+	  Enable ngx_http_fastcgi_module
+
+config BR2_PACKAGE_NGINX_http_uwsgi_module
+	bool "ngx_http_uwsgi_module"
+	default y
+	help
+	  Enable ngx_http_uwsgi_module
+
+config BR2_PACKAGE_NGINX_http_scgi_module
+	bool "ngx_http_scgi_module"
+	default y
+	help
+	  Enable ngx_http_scgi_module
+
+config BR2_PACKAGE_NGINX_http_memcached_module
+	bool "ngx_http_memcached_module"
+	default y
+	help
+	  Enable ngx_http_memcached_module
+
+config BR2_PACKAGE_NGINX_http_limit_conn_module
+	bool "ngx_http_limit_conn_module"
+	default y
+	help
+	  Enable ngx_http_limit_conn_module
+
+config BR2_PACKAGE_NGINX_http_limit_req_module
+	bool "ngx_http_limit_req_module"
+	default y
+	help
+	  Enable ngx_http_limit_req_module
+
+config BR2_PACKAGE_NGINX_http_empty_gif_module
+	bool "ngx_http_empty_gif_module"
+	default y
+	help
+	  Enable ngx_http_empty_gif_module
+
+config BR2_PACKAGE_NGINX_http_browser_module
+	bool "ngx_http_browser_module"
+	default y
+	help
+	  Enable ngx_http_browser_module
+
+config BR2_PACKAGE_NGINX_http_upstream_ip_hash_module
+	bool "ngx_http_upstream_ip_hash_module"
+	default y
+	help
+	  Enable ngx_http_upstream_ip_hash_module
+
+config BR2_PACKAGE_NGINX_http_upstream_least_conn_module
+	bool "ngx_http_upstream_least_conn_module"
+	default y
+	help
+	  Enable ngx_http_upstream_least_conn_module
+
+config BR2_PACKAGE_NGINX_http_upstream_keepalive_module
+	bool "ngx_http_upstream_keepalive_module"
+	default y
+	help
+	  Enable ngx_http_upstream_keepalive_module
+
+endif #BR2_PACKAGE_NGINX_HTTP
+
+config BR2_PACKAGE_NGINX_MAIL
+	bool "mail proxy modules"
+
+if BR2_PACKAGE_NGINX_MAIL
+
+config BR2_PACKAGE_NGINX_mail_pop3_module
+	bool "ngx_mail_pop3_module"
+	default y
+	help
+	  Enable ngx_mail_pop3_module
+
+config BR2_PACKAGE_NGINX_mail_imap_module
+	bool "ngx_mail_imap_module"
+	default y
+	help
+	  Enable ngx_mail_imap_module
+
+config BR2_PACKAGE_NGINX_mail_smtp_module
+	bool "ngx_mail_smtp_module"
+	default y
+	help
+	  Enable ngx_mail_smtp_module
+
+endif #BR2_PACKAGE_NGINX_MAIL
+
+comment "misc. modules"
+
+config BR2_PACKAGE_NGINX_rtsig_module
+	bool "ngx_rtsig_module"
+	help
+	  Enable ngx_rtsig_module
+
+config BR2_PACKAGE_NGINX_select_module
+	bool "ngx_select_module"
+	help
+	  Enable ngx_select_module
+
+config BR2_PACKAGE_NGINX_poll_module
+	bool "ngx_poll_module"
+	help
+	  Enable ngx_poll_module
+
+config BR2_PACKAGE_NGINX_add_modules
+	string "additional modules"
+	help
+	  Space separated list of urls of the additional modules
+
+endif
